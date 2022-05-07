@@ -15,6 +15,11 @@ use App\Http\Controllers\UserController;
 |
 */
 
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\ServerController;
+use App\Http\Controllers\QualityController;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,6 +34,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/datatable/ssd', [UserController::class, 'ssd'])->name('user.ssd');
     Route::resource('/user', UserController::class);
 
+    //Genre Management
+    Route::get('/genre/datatable/ssd', [GenreController::class, 'ssd'])->name('genre.ssd');
+    Route::resource('/genre', GenreController::class);
+
+    //Server Management
+    Route::get("/server/datatable/ssd",[GenreController::class,'ssd'])->name('server.ssd');
+    Route::resource('/server', ServerController::class);
+
+   // quality
+    Route::get('/quality/datable/ssd',[ServerController::class,'ssd'])->name("server.ssd");
+    Route::resource('/quality', QualityController::class);
 });
 
 Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
