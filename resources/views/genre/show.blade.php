@@ -8,7 +8,7 @@
                 <div class="card-body">
                     @forelse(\App\Models\Genre::all() as $genre)
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="genre{{$genre->id}}" checked>
+                            <input class="form-check-input" type="checkbox"  id="genre{{$genre->id}}">
                             <label class="form-check-label" for="genre{{$genre->id}}">
                                 {{$genre->genre}}
                             </label>

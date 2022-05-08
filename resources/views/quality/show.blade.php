@@ -7,8 +7,8 @@
             <div class="card-body">
                 @forelse(\App\Models\Quality::all() as $q)
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="genre{{$q->id}}" checked>
-                        <label class="form-check-label" for="genre{{$q->id}}">
+                        <input class="form-check-input" type="checkbox"  id="quality{{$q->id}}">
+                        <label class="form-check-label" for="quality{{$q->id}}">
                             {{$q->quality_name}}
                         </label>
                     </div>

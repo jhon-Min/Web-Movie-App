@@ -7,8 +7,8 @@
             <div class="card-body">
                 @forelse(\App\Models\Server::all() as $server)
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="genre{{$server->id}}" checked>
-                        <label class="form-check-label" for="genre{{$server->id}}">
+                        <input class="form-check-input" type="checkbox"  id="server{{$server->id}}">
+                        <label class="form-check-label" for="server{{$server->id}}">
                             {{$server->name}}
                         </label>
                     </div>
