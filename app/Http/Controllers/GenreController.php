@@ -24,10 +24,26 @@ class GenreController extends Controller
     }
 
 
-    public function ssd(Request $request)
+    public function ssd()
     {
         $genres = Genre::latest()->get();
-        return Datatables::of($genres)->make(true);
+        return Datatables::of($genres)
+            ->editColumn('created_at', function ($each) {
+                return Carbon::parse($each->created_at)->format('Y-m-d H:i:s');
+            })
+            ->addColumn('plus-icon', function ($each) {
+                return null;
+            })
+            ->addColumn('action', function ($each) {
+                $edit = "";
+                $del = "";
+                $edit = '<a href="'.route('genre.edit', $each->id).'" class="btn mr-1 btn-success btn-sm rounded-circle"><i class="fa-solid fa-pen-to-square fw-light"></i></a>';
+                $del = '<a href="'.route('genre.destroy',$each->id).'" class="btn btn-danger btn-sm rounded-circle delete-btn" data-id="'. $each->id.'"><i class="fa-solid fa-trash-alt fw-light"></i></a>';
+
+                return '<div class="action-icon text-nowrap">' . $edit . $del . '</div>';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
 
@@ -100,7 +116,6 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        $genre->delete();
-        return redirect()->back()->with('status',"Genre deleted");
+        return $genre->delete();
     }
 }
