@@ -20,7 +20,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        return view('genre.index');
+        return view('config');
     }
 
 
@@ -80,7 +80,7 @@ class GenreController extends Controller
      */
     public function show(Genre $genre)
     {
-
+        return view('genre.show',compact('genre'));
     }
 
     /**

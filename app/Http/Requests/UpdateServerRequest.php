@@ -13,7 +13,7 @@ class UpdateServerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,11 @@ class UpdateServerRequest extends FormRequest
      */
     public function rules()
     {
+        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
         return [
-            //
+            "serverName"=> "required|min:3|max:50",
+            "serverUrl"=>  'required|regex:'.$regex,
+            "serverIcon" => "required|file|max:3000|mimes:jpg,png",
         ];
     }
 }

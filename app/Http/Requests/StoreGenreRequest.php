@@ -24,7 +24,7 @@ class StoreGenreRequest extends FormRequest
     public function rules()
     {
         return [
-            'genre' => 'required|min:3|max:100,unique:genre,name',
+            'genre' => 'required|min:3|max:100|unique:genres,genre',
         ];
     }
 }

@@ -36,7 +36,7 @@
                     <span>Manage Configuration</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <x-menu-item link="{{ route('genre.index') }}">Config</x-menu-item>
+                    <x-menu-item link="{{ route('config') }}">Config</x-menu-item>
                     <x-menu-item link="{{ route('genre.create') }}">Create Genre</x-menu-item>
                     <x-menu-item link="{{ route('server.create') }}">Create Server</x-menu-item>
                     <x-menu-item link="{{ route('quality.create') }}">Create Quality</x-menu-item>

@@ -23,12 +23,12 @@ class StoreServerRequest extends FormRequest
      */
     public function rules()
     {
-//        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
-//        return [
-//            "serverName"=> "'required|max:3|min:50",
-//            "serverUrl"=>  'required|url|regex:'.$regex,
-//            "serverIcon" => "nullable",
-//            "serverIcon.*" => "file|max:3000|mimes:jpg,png"
-//        ];
+        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+        return [
+            "serverName"=> "required|min:3|max:50",
+            "serverUrl"=>  'required|regex:'.$regex,
+            "serverIcon" => "required|file|max:3000|mimes:jpg,png",
+        ];
     }
+
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Quality;
 use App\Http\Requests\StoreQualityRequest;
 use App\Http\Requests\UpdateQualityRequest;
+use Carbon\Carbon;
+use Yajra\DataTables\Facades\DataTables;
 
 class QualityController extends Controller
 {
@@ -15,9 +17,30 @@ class QualityController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
+
+    public function ssd(){
+        $qualities = Quality::latest()->get();
+        return Datatables::of($qualities)
+            ->editColumn('created_at', function ($each) {
+                return Carbon::parse($each->created_at)->format('Y-m-d H:i:s');
+            })
+            ->addColumn('plus-icon', function ($each) {
+                return null;
+            })
+            ->addColumn('action', function ($each) {
+                $edit = "";
+                $del = "";
+                $edit = '<a href="'.route('quality.edit', $each->id).'" class="btn mr-1 btn-success btn-sm rounded-circle"><i class="fa-solid fa-pen-to-square fw-light"></i></a>';
+                $del = '<a href="'.route('quality.destroy',$each->id).'" class="btn btn-danger btn-sm rounded-circle del-btn" data-id="' . $each->id . '"><i class="fa-solid fa-trash-alt fw-light"></i></a>';
+
+                return '<div class="action-icon text-nowrap">' . $edit . $del . '</div>';
+            })
+            ->rawColumns(['action', 'icon'])
+            ->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -51,7 +74,7 @@ class QualityController extends Controller
      */
     public function show(Quality $quality)
     {
-        //
+
     }
 
     /**
@@ -87,7 +110,6 @@ class QualityController extends Controller
      */
     public function destroy(Quality $quality)
     {
-        $quality->delete();
-        return redirect()->route('quality.create');
+       return $quality->delete();
     }
 }

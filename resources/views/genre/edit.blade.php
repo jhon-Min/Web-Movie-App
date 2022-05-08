@@ -24,7 +24,7 @@
                             @method('put')
                             <div class="form-group">
                                 <label>Genre</label>
-                                <input type="text" class="form-control w-100" name="genre" value="{{$genre->genre}}">
+                                <input type="text" class="form-control w-100" name="genre" value="{{old('genre',$genre->genre)}}">
                             </div>
                             <div class="text-center">
                                 <a href="{{ route('genre.index') }}" class="btn btn-danger mr-2">Cancel</a>

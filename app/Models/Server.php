@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Server extends Model
 {
     use HasFactory;
+
+    public function server_icon_path(){
+        if($this->icon)
+        {
+            return asset($this->icon);
+        }
+    }
 }

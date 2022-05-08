@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/home', [HomeController::class, 'index'])->name('home');
 
+    //config
+
+    Route::get('/dashboard/config',[GenreController::class,'index'])->name('config');
     // User Management
     Route::get('/user/datatable/ssd', [UserController::class, 'ssd'])->name('user.ssd');
     Route::resource('/user', UserController::class);
@@ -39,11 +42,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('/genre', GenreController::class);
 
     //Server Management
-    Route::get("/server/datatable/ssd",[GenreController::class,'ssd'])->name('server.ssd');
+    Route::get("/server/datatable/ssd",[ServerController::class,'ssd'])->name('server.ssd');
     Route::resource('/server', ServerController::class);
 
    // quality
-    Route::get('/quality/datable/ssd',[ServerController::class,'ssd'])->name("server.ssd");
+    Route::get('/quality/datable/ssd',[QualityController::class,'ssd'])->name("quality.ssd");
     Route::resource('/quality', QualityController::class);
 });
 

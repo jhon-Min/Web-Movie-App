@@ -7,7 +7,7 @@
 @section('content')
     <section class="section">
         <x-bread-crumb title="Users">
-            <div class="breadcrumb-item"><a href="{{ route('genre.index') }}">Genre Lists</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('config') }}">Config</a></div>
             <div class="breadcrumb-item">Add Genre</div>
         </x-bread-crumb>
 
@@ -57,7 +57,7 @@
 @endsection
 
 @section('scripts')
-    {!! JsValidator::formRequest('\App\Http\Requests\StoreGenreRequest', '#genreTable') !!}
+    {!! JsValidator::formRequest('\App\Http\Requests\StoreGenreRequest', '#createGenre') !!}
     <script>
         $(document).ready(function(){
             var table = $("#genreTable").DataTable({
