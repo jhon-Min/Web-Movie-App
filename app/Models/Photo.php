@@ -9,16 +9,19 @@ class Photo extends Model
 {
     use HasFactory;
 
-    protected $with=['contents'];
-    public function photo_path()
-    {
-        if ($this->photo) {
-            return asset('storage/photo/' . $this->photo);
-        }
-        return "No Photo";
+    protected $casts = [
+        'photos' => 'array'
+    ];
 
-    }
-    public function contents(){
+//    public function photo_path()
+//    {
+//        if ($this->photo) {
+//            return asset('storage/photo/' . $this->photo);
+//        }
+//        return "No Photo";
+//
+//    }
+    public function content(){
         return $this->belongsTo(Content::class);
     }
 }

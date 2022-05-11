@@ -45,12 +45,12 @@
                 },
 
                     {
-                        data: 'content_id',
-                        name: 'content_id'
+                        data: 'content',
+                        name: 'content'
                     },
                     {
-                        data: 'photo',
-                        name: 'photo',
+                        data: 'photos',
+                        name: 'photos',
                     },
 
                     {

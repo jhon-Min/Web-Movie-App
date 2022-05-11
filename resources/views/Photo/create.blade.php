@@ -32,7 +32,7 @@
 
                             <div class="form-group">
                                 <label>Photos</label>
-                                <input type="file" name="photo[]" class="form-control" multiple accept="image/jpeg,image,png,image/jpg">
+                                <input type="file" name="photos[]" class="form-control" multiple accept="image/jpeg,image,png,image/jpg">
                             </div>
 
                             <div class="text-center">

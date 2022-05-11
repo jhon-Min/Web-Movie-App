@@ -42,22 +42,22 @@ class PhotoController extends Controller
      */
     public function ssd(Request $request)
     {
-        $photo = Photo::query();
+        $photos = Photo::with('content');
 
-        return DataTables::of($photo)
+        return DataTables::of($photos)
             ->editColumn('created_at', function ($each) {
                 return Carbon::parse($each->created_at)->format('Y-m-d H:i:s');
             })
-            ->editColumn('photo', function ($each) {
-                $output='';
-                foreach($each->photo as $image){
-
-                    $output.='<img src="'.$image->photo_path().'" class="border boreder-1 border-white shadow-sm photo"/>';
+            ->editColumn('content', function ($each){
+                return $each->content->name;
+            })
+            ->editColumn('photos', function ($each){
+                $output = "";
+                foreach ($each->photos as $photo){
+                    $output .= '<img src="storage/photo/' .$photo .'" class="photo border border-1" >' ;
                 }
                 return $output;
-
             })
-
             ->addColumn('plus-icon', function ($each) {
                 return null;
             })
@@ -74,25 +74,28 @@ class PhotoController extends Controller
 
                 return '<div class="action-icon text-nowrap">' . $edit . $detail . $del . '</div>';
             })
-            ->rawColumns(['action','photo'])
+            ->rawColumns(['action','photos'])
             ->make(true);
     }
     public function store(StorePhotoRequest $request)
     {
 
-        if(request()->hasFile('photo')){
-            $images=[];
-            $img_files=$request->file('photo');
-            foreach($img_files as $img_file){
-                $newName=uniqid()."_photo.".$img_file->extension();
-                $img_file->storeAs('public/photo/',$newName);
-                $images[]=$newName;
-                $photo=new Photo();
-                $photo->photo=$images;
-                $photo->content_id=$request->content_id;
-                $photo->save();
+        $photos = null;
+        if($request->hasFile('photos')){
+            $photos = [];
+            $photos_files = $request->file('photos');
+            foreach ($photos_files as $photo_file){
+                $newName = 'photo_' . uniqid() . '.' . $photo_file->getClientOriginalExtension();
+                Storage::disk('public')->put('photo/' . $newName, file_get_contents($photo_file));
+                $photos[] = $newName;
             }
         }
+
+        $imgs = new Photo();
+        $imgs->content_id=$request->content_id;
+        $imgs->photos=$photos;
+        $imgs->save();
+
         return redirect()->route('photo.index')->with('create_alert', ['icon' => 'success', 'title' => 'Successfully Created', 'message' => 'Photo is successfully created']);
 
 

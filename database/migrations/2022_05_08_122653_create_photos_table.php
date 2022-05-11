@@ -15,7 +15,7 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
-            $table->string('photo');
+            $table->text('photos')->nullable();
             $table->foreignId('content_id')->constrained('contents')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
