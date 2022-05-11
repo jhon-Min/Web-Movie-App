@@ -1450,7 +1450,18 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   -o-object-fit: cover;
      object-fit: cover;
 }
-
+.poster{
+    width:80px !important;
+    height: 80px !important;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.photo{
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: cover;
+    border-radius: 10px;
+}
 mark {
   background: orange;
   color: black;

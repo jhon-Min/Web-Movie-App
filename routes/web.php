@@ -45,6 +45,14 @@ Route::middleware('auth')->group(function () {
    // quality
     Route::get('/quality/datable/ssd',[ServerController::class,'ssd'])->name("server.ssd");
     Route::resource('/quality', QualityController::class);
+
+    //content
+    Route::resource('/content',\App\Http\Controllers\ContentController::class);
+    Route::get('/content/datable/ssd',[\App\Http\Controllers\ContentController::class,'ssd'])->name("content.ssd");
+
+    //photo
+    Route::resource('/photo',\App\Http\Controllers\PhotoController::class);
+    Route::get('/photo/datable/ssd',[\App\Http\Controllers\PhotoController::class,'ssd'])->name("photo.ssd");
 });
 
 Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
