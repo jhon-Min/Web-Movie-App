@@ -41,7 +41,26 @@
                     <x-menu-item link="{{ route('server.create') }}">Create Server</x-menu-item>
                     <x-menu-item link="{{ route('quality.create') }}">Create Quality</x-menu-item>
                 </ul>
+
             </li>
+            <li
+                class="dropdown {{ Request::is('content') ? 'active' : '' }} {{ Request::is('content/create') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fa-solid fa-file-alt"></i>
+                    <span>Manage Content</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <x-menu-item link="{{ route('content.index') }}">Content Lists</x-menu-item>
+                    <x-menu-item link="{{ route('content.create') }}">Create Content</x-menu-item>
+                    <x-menu-item link="{{ route('photo.index') }}">Photo Lists</x-menu-item>
+                    <x-menu-item link="{{ route('photo.create') }}">Create Photo</x-menu-item>
+
+
+
+                </ul>
+
+            </li>
+
 
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
