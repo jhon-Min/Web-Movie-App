@@ -36,7 +36,7 @@ class UserController extends Controller
                 }
             })
             ->editColumn('profile_img', function ($each) {
-                return '<img src="' . $each->profile_img_path() . '" alt="" class="border border-1 border-white shadow-sm profile-thumb" />';
+                return '<img src="' . $each->server_icon_path() . '" alt="" class="border border-1 border-white shadow-sm profile-thumb" />';
             })
             ->addColumn('plus-icon', function ($each) {
                 return null;
@@ -75,7 +75,6 @@ class UserController extends Controller
             $file = $request->file('profile_photo');
             $newName = 'profile_' . uniqid() . '.' . $file->getClientOriginalExtension();
             Storage::disk('public')->put('profile/' . $newName, file_get_contents($file));
-
             $user->profile_photo = $newName;
         }
         $user->save();

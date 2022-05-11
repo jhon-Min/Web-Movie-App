@@ -100,9 +100,8 @@
                             </div>
                         </div>
                         <div class="mt-3 mb-2 text-muted text-center">
-                            Don't have an account? <a href="auth-register.html">Create One</a>
+                            Don't have an account? <a href="{{route('register')}}">Create One</a>
                         </div>
-
                     </div>
                 </div>
             </div>

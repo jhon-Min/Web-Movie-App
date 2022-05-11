@@ -25,10 +25,24 @@
                 </a>
                 <ul class="dropdown-menu">
                     <x-menu-item link="{{ route('user.index') }}">Users</x-menu-item>
-
                     <x-menu-item link="{{ route('user.create') }}">Create User</x-menu-item>
                 </ul>
             </li>
+
+            <li
+                class="dropdown {{ Request::is('genre') ? 'active' : '' }} {{ Request::is('genre/create') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Manage Configuration</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <x-menu-item link="{{ route('config') }}">Config</x-menu-item>
+                    <x-menu-item link="{{ route('genre.create') }}">Create Genre</x-menu-item>
+                    <x-menu-item link="{{ route('server.create') }}">Create Server</x-menu-item>
+                    <x-menu-item link="{{ route('quality.create') }}">Create Quality</x-menu-item>
+                </ul>
+            </li>
+
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                 <a href="https://getcodiepie.com/docs" onclick="document.getElementById('logOut').submit()"
